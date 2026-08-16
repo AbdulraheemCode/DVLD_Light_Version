@@ -125,5 +125,34 @@ namespace DVLD_DataAccess
 
             return rowAffected > 0;
         }
+
+        public static bool DeleteUser(int userId)
+        {
+            int rowAffected = 0;
+
+            SqlConnection connection = new SqlConnection(ClsDataSetting.ConnectionString);
+
+            string query = @"DELETE FROM Users WHERE Users.UserID = @UserId";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@UserId", userId);
+
+            try
+            {
+                connection.Open();
+                rowAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowAffected > 0);
+        }
     }
 }
