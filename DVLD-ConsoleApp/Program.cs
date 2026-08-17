@@ -11,10 +11,6 @@ namespace DVLD_Console_App
         {
 
 
-            bool isCountryFound = ClsCountry.IsCountryExists("United States");
-            Console.WriteLine(isCountryFound);
-
-
         }
     }
 }
