@@ -39,6 +39,7 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ClsTestTypesData.cs"/>
         <Compile Include="ClsCountryData.cs"/>
         <Compile Include="ClsDataSetting.cs"/>
         <Compile Include="ClsPersonData.cs"/>
