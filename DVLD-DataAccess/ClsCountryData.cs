@@ -114,5 +114,36 @@ namespace DVLD_DataAccess
 
             return isFound;
         }
+
+        public static bool IsCountryExists(int countryId)
+        {
+            string query = @"SELECT 1
+                            FROM Countries
+                            WHERE Countries.CountryID = @CountryId
+                            ";
+
+            using (SqlConnection connection = new SqlConnection(ClsDataSetting.ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.Add("@CountryId", SqlDbType.Int).Value = countryId;
+                connection.Open();
+                return command.ExecuteScalar() != null;
+            }
+        }
+
+        public static bool IsCountryExists(string countryName)
+        {
+            string query = @"SELECT 1 
+                                FROM Countries  
+                                WHERE CountryName = @countryName";
+
+            using (SqlConnection connection = new SqlConnection(ClsDataSetting.ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.Add("@countryName", SqlDbType.NVarChar, 50).Value = countryName;
+                connection.Open();
+                return command.ExecuteScalar() != null;
+            }
+        }
     }
 }

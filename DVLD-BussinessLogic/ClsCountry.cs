@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using DVLD_DataAccess;
+using Microsoft.Win32.SafeHandles;
 
 namespace DVLD_BussinessLogic
 {
@@ -58,6 +59,16 @@ namespace DVLD_BussinessLogic
         public DataTable GetAllCountries()
         {
             return ClsCountryData.GetAllCountries();
+        }
+
+        public static bool IsCountryExists(int countryId)
+        {
+            return ClsCountryData.IsCountryExists(countryId);
+        }
+
+        public static bool IsCountryExists(string countryName)
+        {
+            return ClsCountryData.IsCountryExists(countryName);
         }
         
         
