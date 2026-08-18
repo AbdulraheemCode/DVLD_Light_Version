@@ -10,19 +10,21 @@ namespace DVLD_DataAccess
         {
             DataTable dtAllTestTypes = new DataTable();
 
-            const string query = @"
-                                    SELECT TestTypeID,
-                                           TestTypeTitle,
-                                           TestTypeDescription,
-                                           TestTypeFees
-                                    FROM TestTypes";
+            const string query = @"SELECT TestTypeID,
+                                          TestTypeTitle,
+                                          TestTypeDescription,
+                                          TestTypeFees
+                                   FROM TestTypes
+                                    ";
 
             using (SqlConnection connection = new SqlConnection(ClsDataSetting.ConnectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
-            using (SqlDataReader reader = command.ExecuteReader())
             {
                 connection.Open();
-                dtAllTestTypes.Load(reader);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    dtAllTestTypes.Load(reader);
+                }
             }
 
             return dtAllTestTypes;
